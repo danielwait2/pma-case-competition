@@ -90,8 +90,9 @@ const Guide = ({ guide }: { guide: InterviewGuide }) => (
   </div>
 );
 
-const PracticeInterviews = () => {
-  const [selected, setSelected] = useState(DEFAULT_TOPIC);
+const PracticeInterviews = ({ defaultTopic }: { defaultTopic?: string }) => {
+  const initialTopic = TOPICS.some((topic) => topic.slug === defaultTopic) ? defaultTopic : DEFAULT_TOPIC;
+  const [selected, setSelected] = useState(initialTopic);
 
   if (TOPICS.length === 0) return null;
 

@@ -1,11 +1,21 @@
 
-import { Link } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Search } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useAuth } from "@/contexts/AuthContext";
 
 const HomeHero = () => {
   const { user, profile } = useAuth();
   const isPmaMember = profile?.is_pma_member ?? false;
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const submitSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const query = searchQuery.trim();
+    navigate(query ? `/search?q=${encodeURIComponent(query)}` : "/search");
+  };
 
   return (
     <section className="min-h-screen flex items-center relative overflow-hidden py-16 md:py-32">
@@ -36,6 +46,23 @@ const HomeHero = () => {
                 A product manager decides what gets built, why, and for whom, then works with engineers and
                 designers until it's real.
               </p>
+            </AnimatedSection>
+
+            <AnimatedSection animation="fade-in" delay={450}>
+              <form onSubmit={submitSearch} className="relative mt-7 max-w-xl">
+                <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                <input
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  placeholder="Search PMA resources, interviews, events..."
+                  aria-label="Search the PMA website"
+                  className="h-14 w-full rounded-xl border border-border bg-card py-3 pl-12 pr-28 text-base shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                />
+                <button type="submit" className="absolute right-1.5 top-1.5 h-11 rounded-lg bg-primary px-4 font-semibold text-primary-foreground transition hover:bg-primary/90">
+                  Search
+                </button>
+              </form>
+              <p className="mt-2 text-center text-sm text-muted-foreground md:text-left">Members-only results are shown with a lock.</p>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in" delay={600}>

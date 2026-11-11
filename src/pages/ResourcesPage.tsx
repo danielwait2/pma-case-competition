@@ -248,6 +248,12 @@ const ResourcesPage = () => {
   const [selectedPaidResource, setSelectedPaidResource] = useState<{ title: string; url: string } | null>(null);
   const [selectedPremiumResource, setSelectedPremiumResource] = useState<{ title: string; url: string } | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const requestedTopic = searchParams.get("topic") ?? undefined;
+
+  useEffect(() => {
+    const sharedQuery = searchParams.get("search");
+    if (sharedQuery) setSearchQuery(sharedQuery);
+  }, [searchParams]);
 
   useEffect(() => {
     if (focusedResource) {
@@ -395,7 +401,7 @@ const ResourcesPage = () => {
           <ApmPlaybook onSelectCategory={setSelectedCategory} onOpenResource={openResourceByTitle} />
         )}
 
-        {!selectedCategory && !searchQuery && <PracticeInterviews />}
+        {!selectedCategory && !searchQuery && <PracticeInterviews defaultTopic={requestedTopic} />}
 
         {!selectedCategory && !searchQuery && <PresidencyConnect />}
 

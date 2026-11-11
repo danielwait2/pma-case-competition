@@ -12,6 +12,10 @@ export const ROUTE_META: Record<string, { title: string; description: string }> 
     title: "Case Interview | PMA Demo Site",
     description: "Attendee guide for Case Interview: Build the Fix with AI: the brief, the case kit, and three ways to ship a fix.",
   },
+  "/search": {
+    title: "Search | PMA Demo Site",
+    description: "Search the BYU PMA website, including member resources and practice interviews.",
+  },
   "/team": {
     title: "Team | PMA Demo Site",
     description: "Meet the BYU Product Management Association leadership and team.",
