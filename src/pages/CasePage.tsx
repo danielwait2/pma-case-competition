@@ -43,7 +43,13 @@ const FRAMEWORKS = [
 const DELIVERABLES = ["Problem", "Evidence and size", "Spec", "Something shipped"];
 
 const STARTER_PROMPT =
-  "I'm a product manager investigating why weekly active members on our club's Resources page fell from 41 to 23 in a month. The attached files are our site analytics, user feedback, and five user interviews. Act as my coach, not my analyst. Don't tell me the cause. Ask me one question at a time that pushes my thinking: what to look at first, which users to compare, what changed and when, how big each possible cause is, and which one is worth fixing first. When I ask you to compute something, show exactly how you got the number so I can check it. Start by asking what I want to check first.";
+  "I'm a product manager investigating why weekly active members on our club's Resources page fell from 41 to 23 in a month. The attached files are our site analytics, user feedback, and five user interviews. Act as my coach, not my analyst. Don't tell me the cause. Ask me one question at a time that pushes my thinking: what to look at first, which users to compare, what changed and when, how big each possible cause is, and which one is worth fixing first. When I ask you to compute something, show exactly how you got the number so I can check it. Start by asking what I want to check first. If you are a coding agent working in the pma-case-competition repo, use its skills: case-coach now, write-spec once I have a problem and evidence, and ship-pr when the fix is built.";
+
+const SKILLS = [
+  { name: "/case-coach", body: "Asks you questions about the kit until you find the cause, without giving you the answer." },
+  { name: "/write-spec", body: "Turns your findings into the four part spec and saves it as SPEC.md." },
+  { name: "/ship-pr", body: "Checks the build and opens a pull request with your spec as the description." },
+];
 
 const WAYS = [
   {
@@ -275,6 +281,19 @@ const CasePage = () => {
                     <span className="font-semibold">You ship: </span>
                     <span className="text-muted-foreground">{w.ship}</span>
                   </p>
+                  {w.title === "In the code" && (
+                    <div className="mt-4">
+                      <p className="text-sm font-semibold mb-2">Skills in the repo (Claude Code)</p>
+                      <ul className="space-y-2 text-sm">
+                        {SKILLS.map((k) => (
+                          <li key={k.name}>
+                            <code className="text-xs bg-muted px-1.5 py-0.5 rounded">{k.name}</code>{" "}
+                            <span className="text-muted-foreground">{k.body}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                   {w.title === "In the code" && (
                     <a
                       href={REPO_URL}

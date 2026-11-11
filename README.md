@@ -35,6 +35,7 @@ No coding needed.
 2. Clone your fork and run `npm install` right away (see Quick start below).
 3. Analyze the kit with any tools you like.
 4. Build the fix with Claude Code, Codex, Cursor, or any editor. [`CLAUDE.md`](CLAUDE.md) gives coding agents the context they need.
+   In Claude Code, three skills are ready: `/case-coach` asks you questions until you find the cause, `/write-spec` turns your findings into SPEC.md, and `/ship-pr` checks the build and opens your pull request.
 5. Open a pull request against this repo (see How to submit a pull request).
 
 ## Quick start
