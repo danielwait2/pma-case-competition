@@ -3,6 +3,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { VIDEO_LIBRARY, type InterviewGuide, type LibraryVideo } from "@/lib/videoLibrary";
+import { TAGS_BY_VIDEO, type TaggedVideo } from "@/lib/videoSearch";
 
 const TOPICS = VIDEO_LIBRARY.map((topic) => ({
   ...topic,
@@ -15,7 +16,26 @@ const SubHeading = ({ children }: { children: React.ReactNode }) => (
   <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">{children}</h4>
 );
 
-const VideoTile = ({ video }: { video: LibraryVideo }) => (
+const VideoTags = ({ video, showRound }: { video: LibraryVideo; showRound?: boolean }) => {
+  const tags = TAGS_BY_VIDEO.get(video.youtubeId);
+  if (!tags) return null;
+  const labels = [showRound ? tags.round : null, tags.length, tags.company, tags.level].filter(Boolean) as string[];
+  return (
+    <div className="mt-2 flex flex-wrap gap-1">
+      {labels.map((label) => (
+        <Badge
+          key={label}
+          variant={label === tags.round ? "default" : "secondary"}
+          className="px-1.5 py-0 text-[10px] font-medium"
+        >
+          {label}
+        </Badge>
+      ))}
+    </div>
+  );
+};
+
+const VideoTile = ({ video, showRound }: { video: LibraryVideo; showRound?: boolean }) => (
   <a
     href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
     target="_blank"
@@ -43,6 +63,7 @@ const VideoTile = ({ video }: { video: LibraryVideo }) => (
       <h5 className="line-clamp-2 text-sm font-semibold leading-snug text-card-foreground transition-colors group-hover:text-primary">
         {video.title}
       </h5>
+      <VideoTags video={video} showRound={showRound} />
     </div>
   </a>
 );
@@ -90,10 +111,38 @@ const Guide = ({ guide }: { guide: InterviewGuide }) => (
   </div>
 );
 
-const PracticeInterviews = () => {
+const SearchMatches = ({ query, videos }: { query: string; videos: TaggedVideo[] }) => (
+  <section
+    id="practice-interviews"
+    aria-labelledby="practice-interviews-title"
+    className="max-w-6xl mx-auto mb-12 scroll-mt-24"
+  >
+    <div className="rounded-xl border border-border bg-card p-5 md:p-8">
+      <h2 id="practice-interviews-title" className="text-xl md:text-2xl font-extrabold text-card-foreground">
+        Practice Interviews
+      </h2>
+      <p className="mt-1 mb-6 text-sm text-muted-foreground">
+        {videos.length} video{videos.length !== 1 ? "s" : ""} matching "{query}"
+      </p>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {videos.map((video) => (
+          <VideoTile key={video.youtubeId} video={video} showRound />
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+interface PracticeInterviewsProps {
+  query?: string;
+  matches?: TaggedVideo[];
+}
+
+const PracticeInterviews = ({ query = "", matches = [] }: PracticeInterviewsProps) => {
   const [selected, setSelected] = useState(DEFAULT_TOPIC);
 
   if (TOPICS.length === 0) return null;
+  if (query.trim() && matches.length > 0) return <SearchMatches query={query} videos={matches} />;
 
   return (
     <section
