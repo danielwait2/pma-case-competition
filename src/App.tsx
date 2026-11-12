@@ -29,6 +29,8 @@ import CodexSetupPage from "./pages/CodexSetupPage";
 
 const queryClient = new QueryClient();
 
+const publicSearchDemo = import.meta.env.VITE_PUBLIC_SEARCH_DEMO === "true";
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
@@ -42,7 +44,7 @@ const App = () => (
             <Routes>
               {/* Public Marketing Routes */}
               <Route element={<PublicLayout />}>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={publicSearchDemo ? <Navigate to="/resources" replace /> : <HomePage />} />
                 <Route path="/case" element={<CasePage />} />
                 <Route path="/case/codex" element={<CodexSetupPage />} />
                 <Route path="/team" element={<TeamPage />} />
@@ -53,13 +55,13 @@ const App = () => (
                 <Route path="/students" element={<StudentsPage />} />
                 <Route path="/companies" element={<CompaniesPage />} />
                 <Route path="/discover" element={<Navigate to="/students" replace />} />
-                <Route path="/auth" element={<AuthPage />} />
+                <Route path="/auth" element={publicSearchDemo ? <Navigate to="/resources" replace /> : <AuthPage />} />
                 <Route path="/blocked" element={<BlockedPage />} />
                 <Route path="/roadmap" element={<RoadmapPage />} />
                 <Route path="/events/ask" element={<AskPage />} />
                 <Route path="/events" element={<EventsPage />} />
                 {/* Members-only: ResourcesPage gates itself on is_pma_member */}
-                <Route path="/resources" element={<ResourcesPage />} />
+                <Route path="/resources" element={<ResourcesPage publicDemo={publicSearchDemo} />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
 
