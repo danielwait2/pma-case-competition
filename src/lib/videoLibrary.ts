@@ -17,6 +17,7 @@ export interface VideoTopic {
   slug: string;
   title: string;
   description: string;
+  keywords?: string[];
   guide?: InterviewGuide;
   videos: LibraryVideo[];
 }
@@ -26,6 +27,7 @@ export const VIDEO_LIBRARY: VideoTopic[] = [
     slug: "basics",
     title: "Interview Basics",
     description: "How PM interviews are structured and graded",
+    keywords: ["case interview", "interview process"],
     videos: [
       { youtubeId: "6i_--b3S6jc", title: "The Perfect Structure for a PM Interview", minutes: 5 },
       { youtubeId: "_4vhjxOuA-A", title: "PM Interview Rubric: What to Expect", minutes: 5 },
@@ -40,6 +42,7 @@ export const VIDEO_LIBRARY: VideoTopic[] = [
     slug: "product-sense",
     title: "Product Sense",
     description: "Design and improve a product for a specific user",
+    keywords: ["case interview", "product design"],
     guide: {
       tests: "Whether you can find a real user problem and design something that solves it. Interviewers grade how you make choices, not how clever the final idea is.",
       where: "Meta (Product Sense), Google (Product Design), Microsoft, and almost every APM loop. The favorite product question is a short version of this round.",
@@ -85,6 +88,7 @@ export const VIDEO_LIBRARY: VideoTopic[] = [
     slug: "strategy",
     title: "Product Strategy",
     description: "Market entry, growth, competition, and go to market",
+    keywords: ["case interview", "case study"],
     guide: {
       tests: "Business judgment: where a company should play, how it wins against competitors, and how it grows.",
       where: "Google, senior PM loops, and AI labs. Strategy also shows up as follow ups inside product sense rounds.",
@@ -119,6 +123,7 @@ export const VIDEO_LIBRARY: VideoTopic[] = [
     slug: "execution",
     title: "Analytical and Execution",
     description: "Metrics, goals, A/B tests, and root cause analysis",
+    keywords: ["case interview", "metrics"],
     guide: {
       tests: "Whether you can define success with data and make good decisions when the numbers move.",
       where: "Meta (Analytical and Execution), Google, and most consumer tech loops.",
@@ -160,6 +165,7 @@ export const VIDEO_LIBRARY: VideoTopic[] = [
     slug: "estimation",
     title: "Estimation",
     description: "Market sizing and back of the envelope math",
+    keywords: ["case interview", "market sizing", "fermi"],
     guide: {
       tests: "Structured thinking with numbers under pressure. The exact answer matters much less than the logic.",
       where: "Less common as its own round now. It still appears at Google, Uber, and startups, and inside strategy questions.",
@@ -193,6 +199,7 @@ export const VIDEO_LIBRARY: VideoTopic[] = [
     slug: "behavioral",
     title: "Leadership and Drive",
     description: "Behavioral stories, introductions, and why this company",
+    keywords: ["behavioral questions", "star method", "tell me about yourself"],
     guide: {
       tests: "How you've actually worked: ownership, leadership, conflict, failure, and whether the team would want to work with you.",
       where: "Every loop. Amazon grades against its Leadership Principles, and Google calls it Googleyness and Leadership.",
@@ -254,6 +261,7 @@ export const VIDEO_LIBRARY: VideoTopic[] = [
     slug: "breaking-in",
     title: "Breaking Into PM",
     description: "Internships, APM programs, resumes, and the job itself",
+    keywords: ["apm", "internship", "resume"],
     videos: [
       { youtubeId: "ufFfq-t6-xg", title: "Get Into Top APM Programs", minutes: 7 },
       { youtubeId: "hZwv04OIV3A", title: "How to Get a PM Internship", minutes: 6 },
