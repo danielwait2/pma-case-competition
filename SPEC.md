@@ -1,11 +1,11 @@
 # Resources search in members’ own words
 
-**Problem.** Members search for interview topics. Search checks resource titles and descriptions, leaving relevant practice sections out of the results. Moving sections higher would still leave searchers at an empty result.
+**Problem.** Weekly active members fell from 41 to 23. Members searching for interview topics missed relevant practice content because search only checked resource titles and descriptions.
 
-**Evidence and size.** In events.csv, filter Oct 11–Nov 7 to signed-in /resources searches with results_count = 0. Counting rows, distinct queries, and distinct user IDs gives 76 searches, 18 phrases, and 44 members. Owen said, “I don't know what the officers call things.” (case-kit/interviews/02-owen.md)
+**Evidence and size.** Filter events.csv to signed-in /resources searches with zero results, Oct 11–Nov 7. Count rows, unique phrases, and unique members: 76 searches, 18 phrases, 44 members. Owen said, “I don't know what the officers call things.” (case-kit/interviews/02-owen.md)
 
-The [supplemental click log](https://drive.google.com/drive/folders/1AtuzHJMGt2meIxbtXTMCMa6d0CpnwlRa) recorded 33 signed-in Resources sessions with a search-box click (Oct 20–Nov 9). Only 3 also recorded a result click (9%). Members found the box but rarely opened a result.
+The [supplemental click log](https://drive.google.com/drive/folders/1AtuzHJMGt2meIxbtXTMCMa6d0CpnwlRa) showed 33 signed-in Resources sessions with a search-box click, Oct 20–Nov 9. Only 3 also recorded a result click (9%). This favored improving results over moving the search box.
 
-**Spec.** Give existing guides, practice sections, and videos plain-language topic labels. Map common queries and observed misspellings to relevant labels. Keep exact-title matches first and show each destination once. Measure the share of sessions with a targeted query that subsequently open relevant content, then track next-week return. Guardrail: previously successful title searches still surface their original resource.
+**Spec.** Match members’ phrases and common misspellings to existing resource cards, practice topics, and videos. Preserve exact-title matches. Measure targeted search sessions followed by a relevant content open, then track next-week return.
 
-**Shipped.** [Live demo](https://pma-member-resource-search.vercel.app/auth). Sign in as `member@byu.edu` with `demo1234`. Try `case interview`, `behavorial`, or `google interview`. Desktop and mobile browser checks found the intended destination for all 18 phrases. Post-launch conversion and retention remain unmeasured.
+**Shipped.** [Live demo](https://pma-member-resource-search.vercel.app/auth). Sign in with `member@byu.edu` and `demo1234`. Try `case interview`, `behavorial`, or `google interview`. Desktop and mobile checks verified relevant destinations for all 18 phrases. Post-launch impact remains unmeasured.
