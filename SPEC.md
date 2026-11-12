@@ -8,4 +8,4 @@ The [supplemental click log](https://drive.google.com/drive/folders/1AtuzHJMGt2m
 
 **Spec.** Match members’ phrases and common misspellings to existing resource cards, practice topics, and videos. Preserve exact-title matches. Measure targeted search sessions followed by a relevant content open, then track next-week return.
 
-**Shipped.** [Live demo](https://pma-member-resource-search.vercel.app/auth). Sign in with `member@byu.edu` and `demo1234`. Try `case interview`, `behavorial`, or `google interview`. Desktop and mobile checks verified relevant destinations for all 18 phrases. Post-launch impact remains unmeasured.
+**Shipped.** [Open the public Resources search demo](https://pma-member-resource-search.vercel.app/resources). No sign-in required. Try `case interview`, `behavorial`, or `google interview`. Desktop and mobile checks verified relevant destinations for all 18 phrases. Post-launch impact remains unmeasured.

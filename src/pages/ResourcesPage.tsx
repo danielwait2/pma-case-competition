@@ -241,7 +241,7 @@ const ResourceCard = ({ resource, category, isPmaMember, showCategory, onOpen }:
   );
 };
 
-const ResourcesPage = () => {
+const ResourcesPage = ({ publicDemo = false }: { publicDemo?: boolean }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [initialTopic, setInitialTopic] = useState<string>();
   const focusPractice = useRef(false);
@@ -298,6 +298,7 @@ const ResourcesPage = () => {
       return;
     }
 
+    if (publicDemo && !user) return;
     await db.from("resource_clicks").insert({
       resource_title: resource.title,
       category_id: categoryId,
@@ -360,7 +361,7 @@ const ResourcesPage = () => {
     );
   }
 
-  if (!isPmaMember) {
+  if (!isPmaMember && !publicDemo) {
     return (
       <LockedResourcesView
         isLoggedIn={!!user}
@@ -412,7 +413,7 @@ const ResourcesPage = () => {
 
         {!selectedCategory && !query && <PracticeInterviews initialTopic={initialTopic} />}
 
-        {!selectedCategory && !query && <PresidencyConnect />}
+        {!selectedCategory && !query && !publicDemo && <PresidencyConnect />}
 
         {/* Most Useful Resources Carousel */}
         {!selectedCategory && !query && FEATURED_RESOURCES.length > 0 && (
@@ -588,7 +589,7 @@ const ResourcesPage = () => {
           </div>
         )}
 
-        <ResourcesFeedback />
+        {!publicDemo && <ResourcesFeedback />}
       </div>
 
       {/* Paid Resource Modal */}
