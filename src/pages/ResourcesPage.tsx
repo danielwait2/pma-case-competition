@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,8 @@ import PaidResourceModal from "@/components/PaidResourceModal";
 import PremiumResourceModal from "@/components/PremiumResourceModal";
 import PresidencyConnect from "@/components/PresidencyConnect";
 import ApmPlaybook from "@/components/resources/ApmPlaybook";
-import PracticeInterviews from "@/components/resources/PracticeInterviews";
+import PracticeInterviews, { VideoTile } from "@/components/resources/PracticeInterviews";
+import { searchSite } from "@/lib/siteSearch";
 import ResourcesFeedback from "@/components/resources/ResourcesFeedback";
 import { RESOURCE_CATEGORIES, type ResourceIcon } from "@/lib/resources";
 
@@ -248,8 +249,25 @@ const ResourcesPage = () => {
   const [selectedPaidResource, setSelectedPaidResource] = useState<{ title: string; url: string } | null>(null);
   const [selectedPremiumResource, setSelectedPremiumResource] = useState<{ title: string; url: string } | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [practiceTopic, setPracticeTopic] = useState("product-sense");
+  const [playbookStep, setPlaybookStep] = useState("experience");
+  const scrollTarget = useRef<string | null>(null);
+  const [jumpCount, setJumpCount] = useState(0);
+
+  const jumpTo = (target: string) => {
+    scrollTarget.current = target;
+    setSearchQuery("");
+    setSelectedCategory(null);
+    setJumpCount((n) => n + 1);
+  };
 
   useEffect(() => {
+    if (scrollTarget.current) {
+      const id = scrollTarget.current;
+      scrollTarget.current = null;
+      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+      return;
+    }
     if (focusedResource) {
       document.getElementById(resourceAnchorId(focusedResource))?.scrollIntoView({ behavior: "smooth", block: "center" });
       setFocusedResource(null);
@@ -257,7 +275,7 @@ const ResourcesPage = () => {
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, searchQuery, jumpCount]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -317,17 +335,19 @@ const ResourcesPage = () => {
     }
   };
 
-  const query = searchQuery.toLowerCase();
-  const searchResults = searchQuery
-    ? CATEGORIES.flatMap((category) =>
-        category.resources
-          .filter(
-            (resource) =>
-              resource.title.toLowerCase().includes(query) || resource.description.toLowerCase().includes(query),
-          )
-          .map((resource) => ({ resource, category })),
-      )
-    : [];
+  const hits = searchQuery ? searchSite(searchQuery) : [];
+  const topicHits = hits.flatMap((h) => (h.kind === "topic" ? [h] : []));
+  const videoHits = hits.flatMap((h) => (h.kind === "video" ? [h] : [])).slice(0, 8);
+  const playbookHits = hits.flatMap((h) => (h.kind === "playbook" ? [h] : [])).slice(0, 2);
+  const searchResults = hits.flatMap((h) => {
+    if (h.kind !== "resource") return [];
+    const category = CATEGORIES.find((c) => c.id === h.categorySlug);
+    const resource = category?.resources.find((r) => r.title === h.title);
+    return category && resource ? [{ resource, category }] : [];
+  });
+  const bestScore = (kind: string) => Math.max(0, ...hits.filter((h) => h.kind === kind).map((h) => h.score));
+  const sectionOrder = (kind: string) => ({ order: -bestScore(kind) });
+  const resultCount = topicHits.length + videoHits.length + playbookHits.length + searchResults.length;
 
   const nonEmptyCategories = CATEGORIES.filter((category) => category.resources.length > 0);
 
@@ -388,14 +408,33 @@ const ResourcesPage = () => {
                 />
               </div>
             )}
+
+            {!selectedCategory && !searchQuery && (
+              <button
+                type="button"
+                onClick={() => {
+                  setPracticeTopic("basics");
+                  jumpTo("practice-interviews");
+                }}
+                className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                <Play className="w-4 h-4" />
+                Prepping for a PM interview? Start here
+              </button>
+            )}
           </div>
         </AnimatedSection>
 
         {!selectedCategory && !searchQuery && (
-          <ApmPlaybook onSelectCategory={setSelectedCategory} onOpenResource={openResourceByTitle} />
+          <ApmPlaybook
+            onSelectCategory={setSelectedCategory}
+            onOpenResource={openResourceByTitle}
+            step={playbookStep}
+            onStepChange={setPlaybookStep}
+          />
         )}
 
-        {!selectedCategory && !searchQuery && <PracticeInterviews />}
+        {!selectedCategory && !searchQuery && <PracticeInterviews topic={practiceTopic} onTopicChange={setPracticeTopic} />}
 
         {!selectedCategory && !searchQuery && <PresidencyConnect />}
 
@@ -487,30 +526,100 @@ const ResourcesPage = () => {
               </AnimatedSection>
             )}
           </div>
-        ) : searchQuery && searchResults.length > 0 ? (
+        ) : searchQuery && resultCount > 0 ? (
           // Search Results View
-          <div className="max-w-6xl mx-auto">
-            <p className="text-sm text-muted-foreground mb-6">
-              Found {searchResults.length} result{searchResults.length !== 1 ? "s" : ""}
+          <div className="max-w-6xl mx-auto flex flex-col gap-10">
+            <p className="text-sm text-muted-foreground" style={{ order: -1000 }}>
+              Found {resultCount} result{resultCount !== 1 ? "s" : ""}
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {searchResults.map(({ resource, category }, idx) => (
-                <AnimatedSection key={`${category.id}-${resource.title}`} animation="slide-up" delay={idx * 50} className="h-full">
-                  <ResourceCard
-                    resource={resource}
-                    category={category}
-                    isPmaMember={isPmaMember}
-                    showCategory
-                    onOpen={trackResourceClick}
-                  />
-                </AnimatedSection>
-              ))}
-            </div>
+
+            {topicHits.length > 0 && (
+              <section style={sectionOrder("topic")}>
+                <h2 className="text-lg font-bold mb-4">Practice Interviews</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {topicHits.map((topic) => (
+                    <Card
+                      key={topic.slug}
+                      className="cursor-pointer border-border hover:shadow-lg hover:-translate-y-1 transition-all"
+                      onClick={() => {
+                        setPracticeTopic(topic.slug);
+                        jumpTo("practice-interviews");
+                      }}
+                    >
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Video className="w-4 h-4 text-primary" />
+                          <h3 className="font-semibold text-card-foreground">{topic.title}</h3>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{topic.description}</p>
+                        <p className="mt-2 text-xs font-medium text-primary">Guide and {topic.count} videos</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {videoHits.length > 0 && (
+              <section style={sectionOrder("video")}>
+                <h2 className="text-lg font-bold mb-4">Videos</h2>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {videoHits.map((hit) => (
+                    <VideoTile key={hit.video.youtubeId} video={hit.video} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {playbookHits.length > 0 && (
+              <section style={sectionOrder("playbook")}>
+                <h2 className="text-lg font-bold mb-4">APM Playbook</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {playbookHits.map((step) => (
+                    <Card
+                      key={step.stepId}
+                      className="cursor-pointer border-border hover:shadow-lg hover:-translate-y-1 transition-all"
+                      onClick={() => {
+                        setPlaybookStep(step.stepId);
+                        jumpTo("apm-playbook");
+                      }}
+                    >
+                      <CardContent className="p-4">
+                        <h3 className="font-semibold text-card-foreground mb-1">{step.title}</h3>
+                        <p className="text-sm text-muted-foreground line-clamp-2">{step.description}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {searchResults.length > 0 && (
+              <section style={sectionOrder("resource")}>
+                <h2 className="text-lg font-bold mb-4">Resources</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {searchResults.map(({ resource, category }, idx) => (
+                    <AnimatedSection key={`${category.id}-${resource.title}`} animation="slide-up" delay={idx * 50} className="h-full">
+                      <ResourceCard
+                        resource={resource}
+                        category={category}
+                        isPmaMember={isPmaMember}
+                        showCategory
+                        onOpen={trackResourceClick}
+                      />
+                    </AnimatedSection>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
         ) : searchQuery ? (
-          // No Results
-          <div className="max-w-6xl mx-auto text-center py-12">
-            <p className="text-muted-foreground">No resources found matching "{searchQuery}"</p>
+          // No Results: fall back to interview prep instead of a dead end
+          <div className="max-w-6xl mx-auto">
+            <p className="text-center text-muted-foreground py-6">
+              No exact match for "{searchQuery}". Most members searching here want interview prep, so here it is:
+            </p>
+            <PracticeInterviews topic={practiceTopic} onTopicChange={setPracticeTopic} />
           </div>
         ) : (
           // Category Grid View

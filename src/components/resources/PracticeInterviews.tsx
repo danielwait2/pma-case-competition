@@ -15,7 +15,7 @@ const SubHeading = ({ children }: { children: React.ReactNode }) => (
   <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">{children}</h4>
 );
 
-const VideoTile = ({ video }: { video: LibraryVideo }) => (
+export const VideoTile = ({ video }: { video: LibraryVideo }) => (
   <a
     href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
     target="_blank"
@@ -90,8 +90,15 @@ const Guide = ({ guide }: { guide: InterviewGuide }) => (
   </div>
 );
 
-const PracticeInterviews = () => {
-  const [selected, setSelected] = useState(DEFAULT_TOPIC);
+interface PracticeInterviewsProps {
+  topic?: string;
+  onTopicChange?: (slug: string) => void;
+}
+
+const PracticeInterviews = ({ topic: controlled, onTopicChange }: PracticeInterviewsProps) => {
+  const [internal, setInternal] = useState(DEFAULT_TOPIC);
+  const selected = controlled ?? internal;
+  const setSelected = onTopicChange ?? setInternal;
 
   if (TOPICS.length === 0) return null;
 

@@ -24,6 +24,8 @@ import { RESOURCE_CATEGORIES } from "@/lib/resources";
 interface ApmPlaybookProps {
   onSelectCategory: (slug: string) => void;
   onOpenResource: (title: string) => void;
+  step?: string;
+  onStepChange?: (id: string) => void;
 }
 
 const isExternalResource = (title: string) =>
@@ -243,8 +245,10 @@ const StepDetail = ({ stepId }: { stepId: string }) => {
   }
 };
 
-const ApmPlaybook = ({ onSelectCategory, onOpenResource }: ApmPlaybookProps) => {
-  const [activeStep, setActiveStep] = useState(PLAYBOOK_STEPS[0].id);
+const ApmPlaybook = ({ onSelectCategory, onOpenResource, step, onStepChange }: ApmPlaybookProps) => {
+  const [internalStep, setInternalStep] = useState(PLAYBOOK_STEPS[0].id);
+  const activeStep = step ?? internalStep;
+  const setActiveStep = onStepChange ?? setInternalStep;
   const activeIndex = PLAYBOOK_STEPS.findIndex((step) => step.id === activeStep);
 
   const openLink = (link: PlaybookLink) => {
@@ -255,7 +259,7 @@ const ApmPlaybook = ({ onSelectCategory, onOpenResource }: ApmPlaybookProps) => 
 
   return (
     <AnimatedSection animation="fade-in">
-      <section aria-labelledby="apm-playbook-title" className="max-w-6xl mx-auto mb-12">
+      <section id="apm-playbook" aria-labelledby="apm-playbook-title" className="max-w-6xl mx-auto mb-12 scroll-mt-24">
         <div className="rounded-xl border border-border bg-card overflow-hidden">
           <div className="p-5 md:p-8">
             <h2 id="apm-playbook-title" className="text-2xl md:text-3xl font-extrabold text-card-foreground">
