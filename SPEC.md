@@ -6,4 +6,4 @@
 
 **Spec.** For: members searching for interview prep. Does: searches the video library and resource tips, matching word by word plus common terms like "case interview" and "star method". Not building: typo correction, playbook search, approval changes. Success metric: 0-result search rate (78% of 97 searches, Oct 11 to Nov 7). Guardrail: share of searches followed by a resource click or video open.
 
-**Shipped.** PR on branch `fix/search-interview-prep`: `src/lib/search.ts`, `ResourcesPage.tsx`. 82 of 85 past 0-result searches now return results.
+**Shipped.** PR #11 on branch `ligia-and-dan-search-fix`: `src/lib/search.ts`, `ResourcesPage.tsx`. 82 of 85 past 0-result searches now return results.
