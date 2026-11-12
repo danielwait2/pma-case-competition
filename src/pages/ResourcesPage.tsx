@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -251,18 +251,20 @@ const ResourcesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [practiceTopic, setPracticeTopic] = useState("product-sense");
   const [playbookStep, setPlaybookStep] = useState("experience");
-  const [scrollTarget, setScrollTarget] = useState<string | null>(null);
+  const scrollTarget = useRef<string | null>(null);
+  const [jumpCount, setJumpCount] = useState(0);
 
   const jumpTo = (target: string) => {
+    scrollTarget.current = target;
     setSearchQuery("");
     setSelectedCategory(null);
-    setScrollTarget(target);
+    setJumpCount((n) => n + 1);
   };
 
   useEffect(() => {
-    if (scrollTarget) {
-      const id = scrollTarget;
-      setScrollTarget(null);
+    if (scrollTarget.current) {
+      const id = scrollTarget.current;
+      scrollTarget.current = null;
       setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
       return;
     }
@@ -273,7 +275,7 @@ const ResourcesPage = () => {
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCategory, searchQuery, scrollTarget]);
+  }, [selectedCategory, searchQuery, jumpCount]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -343,6 +345,8 @@ const ResourcesPage = () => {
     const resource = category?.resources.find((r) => r.title === h.title);
     return category && resource ? [{ resource, category }] : [];
   });
+  const bestScore = (kind: string) => Math.max(0, ...hits.filter((h) => h.kind === kind).map((h) => h.score));
+  const sectionOrder = (kind: string) => ({ order: -bestScore(kind) });
   const resultCount = topicHits.length + videoHits.length + playbookHits.length + searchResults.length;
 
   const nonEmptyCategories = CATEGORIES.filter((category) => category.resources.length > 0);
@@ -524,13 +528,13 @@ const ResourcesPage = () => {
           </div>
         ) : searchQuery && resultCount > 0 ? (
           // Search Results View
-          <div className="max-w-6xl mx-auto space-y-10">
-            <p className="text-sm text-muted-foreground">
+          <div className="max-w-6xl mx-auto flex flex-col gap-10">
+            <p className="text-sm text-muted-foreground" style={{ order: -1000 }}>
               Found {resultCount} result{resultCount !== 1 ? "s" : ""}
             </p>
 
             {topicHits.length > 0 && (
-              <section>
+              <section style={sectionOrder("topic")}>
                 <h2 className="text-lg font-bold mb-4">Practice Interviews</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {topicHits.map((topic) => (
@@ -557,7 +561,7 @@ const ResourcesPage = () => {
             )}
 
             {videoHits.length > 0 && (
-              <section>
+              <section style={sectionOrder("video")}>
                 <h2 className="text-lg font-bold mb-4">Videos</h2>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {videoHits.map((hit) => (
@@ -568,7 +572,7 @@ const ResourcesPage = () => {
             )}
 
             {playbookHits.length > 0 && (
-              <section>
+              <section style={sectionOrder("playbook")}>
                 <h2 className="text-lg font-bold mb-4">APM Playbook</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {playbookHits.map((step) => (
@@ -591,7 +595,7 @@ const ResourcesPage = () => {
             )}
 
             {searchResults.length > 0 && (
-              <section>
+              <section style={sectionOrder("resource")}>
                 <h2 className="text-lg font-bold mb-4">Resources</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                   {searchResults.map(({ resource, category }, idx) => (
