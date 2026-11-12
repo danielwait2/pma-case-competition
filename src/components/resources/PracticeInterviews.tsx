@@ -90,14 +90,15 @@ const Guide = ({ guide }: { guide: InterviewGuide }) => (
   </div>
 );
 
-const PracticeInterviews = () => {
-  const [selected, setSelected] = useState(DEFAULT_TOPIC);
+const PracticeInterviews = ({ initialTopic = DEFAULT_TOPIC }: { initialTopic?: string }) => {
+  const [selected, setSelected] = useState(initialTopic);
 
   if (TOPICS.length === 0) return null;
 
   return (
     <section
       id="practice-interviews"
+      tabIndex={-1}
       aria-labelledby="practice-interviews-title"
       className="max-w-6xl mx-auto mb-12 scroll-mt-24"
     >

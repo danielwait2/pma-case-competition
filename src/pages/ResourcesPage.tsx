@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,8 @@ import ApmPlaybook from "@/components/resources/ApmPlaybook";
 import PracticeInterviews from "@/components/resources/PracticeInterviews";
 import ResourcesFeedback from "@/components/resources/ResourcesFeedback";
 import { RESOURCE_CATEGORIES, type ResourceIcon } from "@/lib/resources";
+
+import { findInterviewResults, normalizeSearch } from "@/lib/interviewSearch";
 
 interface Resource {
   title: string;
@@ -241,6 +243,8 @@ const ResourceCard = ({ resource, category, isPmaMember, showCategory, onOpen }:
 
 const ResourcesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [initialTopic, setInitialTopic] = useState<string>();
+  const focusPractice = useRef(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [focusedResource, setFocusedResource] = useState<string | null>(null);
   const { user, profile, isBlocked, loading: authLoading } = useAuth();
@@ -250,6 +254,13 @@ const ResourcesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    if (focusPractice.current) {
+      focusPractice.current = false;
+      const section = document.getElementById("practice-interviews");
+      section?.focus({ preventScroll: true });
+      section?.scrollIntoView({ block: "start" });
+      return;
+    }
     if (focusedResource) {
       document.getElementById(resourceAnchorId(focusedResource))?.scrollIntoView({ behavior: "smooth", block: "center" });
       setFocusedResource(null);
@@ -317,8 +328,8 @@ const ResourcesPage = () => {
     }
   };
 
-  const query = searchQuery.toLowerCase();
-  const searchResults = searchQuery
+  const query = normalizeSearch(searchQuery);
+  const searchResults = query
     ? CATEGORIES.flatMap((category) =>
         category.resources
           .filter(
@@ -328,6 +339,10 @@ const ResourcesPage = () => {
           .map((resource) => ({ resource, category })),
       )
     : [];
+
+  searchResults.sort((a, b) => Number(normalizeSearch(b.resource.title) === query) - Number(normalizeSearch(a.resource.title) === query));
+  const interviews = query ? findInterviewResults(query) : { topics: [], videos: [] };
+  const resultCount = searchResults.length + interviews.topics.length + interviews.videos.length;
 
   const nonEmptyCategories = CATEGORIES.filter((category) => category.resources.length > 0);
 
@@ -391,16 +406,16 @@ const ResourcesPage = () => {
           </div>
         </AnimatedSection>
 
-        {!selectedCategory && !searchQuery && (
+        {!selectedCategory && !query && (
           <ApmPlaybook onSelectCategory={setSelectedCategory} onOpenResource={openResourceByTitle} />
         )}
 
-        {!selectedCategory && !searchQuery && <PracticeInterviews />}
+        {!selectedCategory && !query && <PracticeInterviews initialTopic={initialTopic} />}
 
-        {!selectedCategory && !searchQuery && <PresidencyConnect />}
+        {!selectedCategory && !query && <PresidencyConnect />}
 
         {/* Most Useful Resources Carousel */}
-        {!selectedCategory && !searchQuery && FEATURED_RESOURCES.length > 0 && (
+        {!selectedCategory && !query && FEATURED_RESOURCES.length > 0 && (
           <AnimatedSection animation="fade-in">
             <div className="max-w-6xl mx-auto mb-12">
               <div className="flex items-center gap-2 mb-4">
@@ -487,11 +502,11 @@ const ResourcesPage = () => {
               </AnimatedSection>
             )}
           </div>
-        ) : searchQuery && searchResults.length > 0 ? (
+        ) : query && resultCount > 0 ? (
           // Search Results View
           <div className="max-w-6xl mx-auto">
             <p className="text-sm text-muted-foreground mb-6">
-              Found {searchResults.length} result{searchResults.length !== 1 ? "s" : ""}
+              Found {resultCount} result{resultCount !== 1 ? "s" : ""}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {searchResults.map(({ resource, category }, idx) => (
@@ -505,9 +520,29 @@ const ResourcesPage = () => {
                   />
                 </AnimatedSection>
               ))}
+              {interviews.topics.map((topic) => (
+                <button key={topic.slug} type="button"
+                  className="rounded-xl border bg-card p-5 text-left hover:border-primary focus-visible:ring-2"
+                  onClick={() => {
+                    focusPractice.current = true;
+                    setInitialTopic(topic.slug);
+                    setSearchQuery("");
+                  }}>
+                  <span className="text-sm text-muted-foreground">Practice topic</span>
+                  <span className="mt-1 block font-semibold">{topic.title}</span>
+                </button>
+              ))}
+              {interviews.videos.map((video) => (
+                <a key={video.youtubeId} href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                  target="_blank" rel="noopener noreferrer"
+                  className="rounded-xl border bg-card p-5 hover:border-primary focus-visible:ring-2">
+                  <span className="text-sm text-muted-foreground">Video · {video.minutes} min · YouTube</span>
+                  <span className="mt-1 block font-semibold">{video.title}</span>
+                </a>
+              ))}
             </div>
           </div>
-        ) : searchQuery ? (
+        ) : query ? (
           // No Results
           <div className="max-w-6xl mx-auto text-center py-12">
             <p className="text-muted-foreground">No resources found matching "{searchQuery}"</p>
