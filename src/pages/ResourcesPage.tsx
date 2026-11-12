@@ -14,9 +14,15 @@ import PaidResourceModal from "@/components/PaidResourceModal";
 import PremiumResourceModal from "@/components/PremiumResourceModal";
 import PresidencyConnect from "@/components/PresidencyConnect";
 import ApmPlaybook from "@/components/resources/ApmPlaybook";
-import PracticeInterviews from "@/components/resources/PracticeInterviews";
+import PracticeInterviews, { VideoTile } from "@/components/resources/PracticeInterviews";
 import ResourcesFeedback from "@/components/resources/ResourcesFeedback";
 import { RESOURCE_CATEGORIES, type ResourceIcon } from "@/lib/resources";
+import { searchLibrary } from "@/lib/resourceSearch";
+import { VIDEO_LIBRARY } from "@/lib/videoLibrary";
+
+const MAX_VIDEO_RESULTS = 8;
+
+const SUGGESTED_TOPICS = VIDEO_LIBRARY.filter((topic) => topic.videos.length > 0 && topic.slug !== "basics");
 
 interface Resource {
   title: string;
@@ -248,8 +254,21 @@ const ResourcesPage = () => {
   const [selectedPaidResource, setSelectedPaidResource] = useState<{ title: string; url: string } | null>(null);
   const [selectedPremiumResource, setSelectedPremiumResource] = useState<{ title: string; url: string } | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [interviewTopic, setInterviewTopic] = useState<string | null>(null);
+  const [jumpToInterviews, setJumpToInterviews] = useState(false);
+
+  const openInterviewTopic = (slug: string) => {
+    setInterviewTopic(slug);
+    setJumpToInterviews(true);
+    setSearchQuery("");
+  };
 
   useEffect(() => {
+    if (jumpToInterviews) {
+      document.getElementById("practice-interviews")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      setJumpToInterviews(false);
+      return;
+    }
     if (focusedResource) {
       document.getElementById(resourceAnchorId(focusedResource))?.scrollIntoView({ behavior: "smooth", block: "center" });
       setFocusedResource(null);
@@ -317,17 +336,14 @@ const ResourcesPage = () => {
     }
   };
 
-  const query = searchQuery.toLowerCase();
-  const searchResults = searchQuery
-    ? CATEGORIES.flatMap((category) =>
-        category.resources
-          .filter(
-            (resource) =>
-              resource.title.toLowerCase().includes(query) || resource.description.toLowerCase().includes(query),
-          )
-          .map((resource) => ({ resource, category })),
-      )
-    : [];
+  const libraryResults = searchLibrary(searchQuery);
+  const searchResults = libraryResults.resources.flatMap(({ resource, categorySlug }) => {
+    const category = CATEGORIES.find((c) => c.id === categorySlug);
+    const match = category?.resources.find((r) => r.title === resource.title);
+    return category && match ? [{ resource: match, category }] : [];
+  });
+  const videoResults = libraryResults.videos.slice(0, MAX_VIDEO_RESULTS);
+  const hasSearchResults = libraryResults.total > 0;
 
   const nonEmptyCategories = CATEGORIES.filter((category) => category.resources.length > 0);
 
@@ -395,7 +411,9 @@ const ResourcesPage = () => {
           <ApmPlaybook onSelectCategory={setSelectedCategory} onOpenResource={openResourceByTitle} />
         )}
 
-        {!selectedCategory && !searchQuery && <PracticeInterviews />}
+        {!selectedCategory && !searchQuery && (
+          <PracticeInterviews topic={interviewTopic} onTopicChange={setInterviewTopic} />
+        )}
 
         {!selectedCategory && !searchQuery && <PresidencyConnect />}
 
@@ -487,12 +505,59 @@ const ResourcesPage = () => {
               </AnimatedSection>
             )}
           </div>
-        ) : searchQuery && searchResults.length > 0 ? (
+        ) : searchQuery && hasSearchResults ? (
           // Search Results View
-          <div className="max-w-6xl mx-auto">
-            <p className="text-sm text-muted-foreground mb-6">
-              Found {searchResults.length} result{searchResults.length !== 1 ? "s" : ""}
-            </p>
+          <div className="max-w-6xl mx-auto space-y-10">
+            {libraryResults.topics.length > 0 && (
+              <section aria-labelledby="search-topics-title">
+                <h2 id="search-topics-title" className="text-lg font-bold mb-4">
+                  Practice interview guides
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {libraryResults.topics.map((topic) => (
+                    <button
+                      key={topic.slug}
+                      type="button"
+                      onClick={() => openInterviewTopic(topic.slug)}
+                      className="text-left rounded-lg border border-border bg-card p-4 min-h-[44px] transition-all hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <div className="flex items-center gap-2 mb-1">
+                        <Video className="w-4 h-4 text-primary shrink-0" />
+                        <span className="font-semibold text-card-foreground">{topic.title}</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{topic.description}</p>
+                      <p className="mt-2 text-sm font-medium text-primary">
+                        How the round works + {topic.videos.length} mock interviews
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {videoResults.length > 0 && (
+              <section aria-labelledby="search-videos-title">
+                <h2 id="search-videos-title" className="text-lg font-bold mb-4">
+                  Mock interview videos
+                  {libraryResults.videos.length > videoResults.length && (
+                    <span className="ml-2 text-sm font-normal text-muted-foreground">
+                      Showing {videoResults.length} of {libraryResults.videos.length}
+                    </span>
+                  )}
+                </h2>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {videoResults.map(({ video }) => (
+                    <VideoTile key={video.youtubeId} video={video} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {searchResults.length > 0 && (
+            <section aria-labelledby="search-resources-title">
+            <h2 id="search-resources-title" className="text-lg font-bold mb-4">
+              Resources
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {searchResults.map(({ resource, category }, idx) => (
                 <AnimatedSection key={`${category.id}-${resource.title}`} animation="slide-up" delay={idx * 50} className="h-full">
@@ -506,11 +571,33 @@ const ResourcesPage = () => {
                 </AnimatedSection>
               ))}
             </div>
+            </section>
+            )}
           </div>
         ) : searchQuery ? (
           // No Results
-          <div className="max-w-6xl mx-auto text-center py-12">
-            <p className="text-muted-foreground">No resources found matching "{searchQuery}"</p>
+          <div className="max-w-2xl mx-auto text-center py-12 px-2">
+            <p className="text-lg font-semibold text-foreground">
+              We don't have anything for "{searchQuery}" yet, but you're in the right place.
+            </p>
+            <p className="mt-2 text-muted-foreground">
+              Most members are prepping for interviews. Pick a round to see how it works and watch real mock interviews:
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {SUGGESTED_TOPICS.map((topic) => (
+                <Button
+                  key={topic.slug}
+                  variant="outline"
+                  className="min-h-[44px]"
+                  onClick={() => openInterviewTopic(topic.slug)}
+                >
+                  {topic.title}
+                </Button>
+              ))}
+            </div>
+            <p className="mt-6 text-sm text-muted-foreground">
+              Still missing something? Tell us in the feedback box at the bottom of this page and we'll add it.
+            </p>
           </div>
         ) : (
           // Category Grid View
