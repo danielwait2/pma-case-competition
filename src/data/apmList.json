@@ -1,0 +1,870 @@
+{
+  "source": "https://apmlist.com",
+  "syncedAt": "2026-11-12T02:03:38.040Z",
+  "programs": [
+    {
+      "company": "Adobe",
+      "type": "Entry level",
+      "status": "Open",
+      "url": "https://careers.adobe.com/us/en/job/R171900/2027-MBA-University-Graduate-Product-Manager",
+      "guide": "https://www.tryexponent.com/guides/adobe-product-manager-interview?src=apmlist",
+      "updatedAt": "2026-10-13T03:42:13.000Z"
+    },
+    {
+      "company": "Airbnb",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://careers.airbnb.com/positions/?_search_input=product%20manager%20intern",
+      "guide": "https://www.tryexponent.com/guides/airbnb-product-manager-interview?src=apmlist",
+      "updatedAt": "2023-03-27T02:12:22.000Z"
+    },
+    {
+      "company": "Amazon",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://www.amazon.jobs/en/search?offset=0&result_limit=10&sort=relevant&country[]=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=product%20manager%20intern&city=&country=&region=&county=&query_options=&",
+      "guide": "https://www.tryexponent.com/guides/amazon-product-manager-interview?src=apmlist",
+      "updatedAt": "2023-05-08T04:26:50.000Z"
+    },
+    {
+      "company": "Appian",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://careers.appian.com/jobs/8069612-product-manager--2027-graduates-",
+      "guide": null,
+      "updatedAt": "2026-09-08T03:08:18.000Z"
+    },
+    {
+      "company": "Arcade AI",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://jobs.ashbyhq.com/arcade-ai?departmentId=611ddca3-0151-41b3-882d-2198b8be7368",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Asana",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://asana.com/jobs/all",
+      "guide": null,
+      "updatedAt": "2023-05-08T07:20:16.000Z"
+    },
+    {
+      "company": "Atlassian",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.atlassian.com/company/careers/all-jobs?team=Product%20Management&location=&search=",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "Blackrock",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://careers.blackrock.com/search-jobs",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "Bytedance",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://joinbytedance.com/search?keyword=product+manager&recruitment_id_list=202%2C301%2C201&job_category_id_list=&subject_id_list=&location_code_list=CT_1000001%2CCT_94%2CCT_114%2CCT_203%2CCT_1103355%2CCT_130%2CCT_157%2CCT_233%2CCT_100764&limit=12&offset=0",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:51:36.000Z"
+    },
+    {
+      "company": "CapitalOne",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.capitalonecareers.com/search-jobs/associate%20product%20manager/234/1",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:11:55.000Z"
+    },
+    {
+      "company": "Cisco",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://careers.cisco.com/global/en/search-results?keywords=product%20manager",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:59:31.000Z"
+    },
+    {
+      "company": "Citrix",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://careers.cloud.com/jobs/search?page=1&query=product+manager",
+      "guide": null,
+      "updatedAt": "2023-07-24T03:33:25.000Z"
+    },
+    {
+      "company": "Coinbase",
+      "type": "APM",
+      "status": "Open",
+      "url": "https://www.coinbase.com/en-sg/careers/positions/8168322",
+      "guide": null,
+      "updatedAt": "2026-10-06T03:10:39.000Z"
+    },
+    {
+      "company": "Databricks",
+      "type": "APM",
+      "status": "Open",
+      "url": "https://www.databricks.com/company/careers/university-recruiting/associate-product-manager-new-grad-2027-start-7586263002",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:45:26.000Z"
+    },
+    {
+      "company": "Databricks",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://www.databricks.com/company/careers/university-recruiting/associate-product-manager-new-grad-2026-start-7586263002",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Disney",
+      "type": "APM",
+      "status": "Closed for 2027",
+      "url": "https://www.disneycareers.com/en/job/glendale/associate-product-manager-program/391/100651632256",
+      "guide": null,
+      "updatedAt": "2026-10-19T16:28:01.000Z"
+    },
+    {
+      "company": "DoorDash",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://careersatdoordash.com/job-search/?keyword=product%20manager%20intern&location=&spage=1",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Dropbox",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://jobs.dropbox.com/all-jobs",
+      "guide": null,
+      "updatedAt": "2023-06-21T04:13:37.000Z"
+    },
+    {
+      "company": "Duolingo",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://careers.duolingo.com/?department=Product+Management#careers",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Ebay",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://jobs.ebayinc.com/us/en/search-results",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "Expedia Group",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://careers.expediagroup.com/jobs/job/?Expedian+Professional-Seattle-Washington-j-R-78255",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:12:14.000Z"
+    },
+    {
+      "company": "Figma",
+      "type": "APM",
+      "status": "Closed for 2027",
+      "url": "https://job-boards.greenhouse.io/figma/jobs/6180116004?gh_jid=6180116004",
+      "guide": null,
+      "updatedAt": "2026-10-27T05:14:03.000Z"
+    },
+    {
+      "company": "Google",
+      "type": "APM",
+      "status": "Closed for 2027",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/107272685397910214-associate-product-manager-university-graduate-2027-start",
+      "guide": null,
+      "updatedAt": "2026-10-13T03:52:10.000Z"
+    },
+    {
+      "company": "Google (APMM)",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/?q=%22product%20manager%22&target_level=EARLY&target_level=INTERN_AND_APPRENTICE&location=United%20States",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "IBM",
+      "type": "APM",
+      "status": "Closed for 2027",
+      "url": "https://careers.ibm.com/en_US/careers/JobDetail?jobId=131031&source=WEB_Search_NA",
+      "guide": null,
+      "updatedAt": "2026-10-27T05:15:48.000Z"
+    },
+    {
+      "company": "Indeed",
+      "type": "APM",
+      "status": "Open",
+      "url": "https://www.indeed.com/cmp/Indeed/jobs?jk=93e216a61caa4b0f&q=product%20manager&l=&start=0",
+      "guide": null,
+      "updatedAt": "2026-10-20T06:00:29.000Z"
+    },
+    {
+      "company": "Instacart",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.instacart.careers/apm",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "IXL Learning",
+      "type": "APM",
+      "status": "Open",
+      "url": "https://www.ixl.com/company/careers?gh_jid=8447267002",
+      "guide": null,
+      "updatedAt": "2026-04-04T14:18:50.000Z"
+    },
+    {
+      "company": "Kleiner Perkins Fellows",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://jobs.ashbyhq.com/kleinerperkinsfellows",
+      "guide": null,
+      "updatedAt": "2024-06-24T02:48:10.000Z"
+    },
+    {
+      "company": "Lenovo",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://jobs.lenovo.com/en_US/careers/SearchJobs/product%20manager%20intern?listFilterMode=1&jobRecordsPerPage=10&",
+      "guide": null,
+      "updatedAt": "2026-08-17T02:19:39.000Z"
+    },
+    {
+      "company": "LinkedIn",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.linkedin.com/jobs/search-results/?currentJobId=4449932366&keywords=jobs&origin=JOB_SEARCH_PAGE_JOB_FILTER&referralSearchId=HZYlPxSENz5Cmk6uMf0UyA%3D%3D&geoId=103644278&f_C=1337%2C2587638%2C39939&f_SAL=f_SA_id_227001%3A276001",
+      "guide": null,
+      "updatedAt": "2025-10-24T06:35:21.000Z"
+    },
+    {
+      "company": "Lyft",
+      "type": "APM",
+      "status": "Paused",
+      "url": "https://www.lyft.com/careers#openings",
+      "guide": null,
+      "updatedAt": "2023-11-05T06:53:07.000Z"
+    },
+    {
+      "company": "Meta",
+      "type": "APM",
+      "status": "Closed for 2027",
+      "url": "https://www.metacareers.com/jobsearch/?teams[0]=University%20Grad%20-%20Business&teams[1]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&teams[2]=University%20Grad%20-%20PhD%20%26%20Postdoc&q=product%20manager",
+      "guide": null,
+      "updatedAt": "2026-10-13T04:01:15.000Z"
+    },
+    {
+      "company": "Microsoft",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://apply.careers.microsoft.com/careers?query=product+manager+intern&start=0&pid=1970393556928915&sort_by=relevance",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Miro",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://miro.com/careers/open-positions/?keyword=product+manager",
+      "guide": null,
+      "updatedAt": "2024-06-24T02:48:38.000Z"
+    },
+    {
+      "company": "Mojang",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://jobs.careers.microsoft.com/global/en/share/1744013/?utm_source=Job Share&utm_campaign=Copy-job-share",
+      "guide": null,
+      "updatedAt": "2023-09-23T08:55:19.000Z"
+    },
+    {
+      "company": "Mozilla",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.mozilla.org/en-US/careers/",
+      "guide": null,
+      "updatedAt": "2023-05-08T07:19:34.000Z"
+    },
+    {
+      "company": "Notion",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://www.notion.com/careers?utm_feeditemid=&utm_device=c&utm_term=&utm_source=Google&utm_medium=paidsearch&utm_campaign=RL_PMax_APAC_EPD_MetadataAudiences&gad_source=1&gad_campaignid=22720918035&gbraid=0AAAAAot8BGXf8-ovzBkuREYD-KuAmuqAy&gclid=Cj0KCQjw9JLHBhC-ARIsAK4PhcqilKzwZgDNG7cpgk-JX40Cy1VTsCLtjeLhvRgJvdbWk-t43Fv3rTMaAsgGEALw_wcB&department=earlycareer",
+      "guide": null,
+      "updatedAt": "2023-11-05T06:54:14.000Z"
+    },
+    {
+      "company": "OKX",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://job-boards.greenhouse.io/okx/jobs/6082309003?gh_src=8ad01c4c3us",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:35:47.000Z"
+    },
+    {
+      "company": "Oracle",
+      "type": "Entry level",
+      "status": "Open",
+      "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/334348/?utm_medium=jobshare&utm_source=External+Job+Share",
+      "guide": null,
+      "updatedAt": "2026-08-03T06:57:29.000Z"
+    },
+    {
+      "company": "PayPal",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://paypal.eightfold.ai/careers?domain=paypal.com&query=*",
+      "guide": null,
+      "updatedAt": "2022-10-25T20:44:55.000Z"
+    },
+    {
+      "company": "Perplexity",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://jobs.ashbyhq.com/Perplexity?departmentId=38f4c25e-ad15-4141-92c6-c4b76f2ff7a5",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Pinterest",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.pinterestcareers.com/early-career/apprenticeships/",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:39:39.000Z"
+    },
+    {
+      "company": "Red Hat",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://redhat.wd5.myworkdayjobs.com/en-US/jobs?q=product%20manager%20intern&%2526iisn=LinkedIn%252BPosting&source=LinkedIn&%2526%253Fmode=job&%2526iis=Job%252BBoard",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:39:42.000Z"
+    },
+    {
+      "company": "Reddit",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://boards.greenhouse.io/reddit/jobs/5006747",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:39:37.000Z"
+    },
+    {
+      "company": "Robinhood",
+      "type": "APM",
+      "status": "Closed for 2027",
+      "url": "https://job-boards.greenhouse.io/robinhood/jobs/8199973?gh_src=NaN&gh_jid=8199973",
+      "guide": null,
+      "updatedAt": "2026-10-20T06:07:54.000Z"
+    },
+    {
+      "company": "Roblox",
+      "type": "APM",
+      "status": "Open",
+      "url": "https://careers.roblox.com/jobs/8143976",
+      "guide": null,
+      "updatedAt": "2026-09-15T03:13:56.000Z"
+    },
+    {
+      "company": "Salesforce",
+      "type": "APM",
+      "status": "Closed for 2027",
+      "url": "https://www.salesforce.com/company/careers/jobs/JR351508/associate-product-manager-starting-summer-2027/",
+      "guide": null,
+      "updatedAt": "2026-08-25T04:07:18.000Z"
+    },
+    {
+      "company": "Samsara",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.samsara.com/company/careers/roles?search=product+manager+intern",
+      "guide": null,
+      "updatedAt": "2026-08-03T07:04:05.000Z"
+    },
+    {
+      "company": "Scale AI",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://job-boards.greenhouse.io/scaleai?error=true&departments%5B%5D=4044812005",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:44:05.000Z"
+    },
+    {
+      "company": "Shopify",
+      "type": "APM",
+      "status": "Open",
+      "url": "https://www.shopify.com/careers/apprentice-product-manager-spring-2027_2f3b3b4f-be41-4e08-ab6f-d38b9f798c84?keyword=product+manager",
+      "guide": null,
+      "updatedAt": "2026-11-03T07:58:18.000Z"
+    },
+    {
+      "company": "Sierra AI",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://jobs.ashbyhq.com/Sierra?departmentId=56b8f97c-8426-4fa1-84a7-a3b46f60b9d3",
+      "guide": null,
+      "updatedAt": "2026-06-29T02:53:44.000Z"
+    },
+    {
+      "company": "Snap",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://wd1.myworkdaysite.com/en-US/recruiting/snapchat/snap/details/Product-Designer--Snap-Lab_R0031257?q=product%20manager",
+      "guide": null,
+      "updatedAt": "2023-07-31T02:49:13.000Z"
+    },
+    {
+      "company": "Spotify",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.lifeatspotify.com/jobs?j=internship&j=early-career-program",
+      "guide": null,
+      "updatedAt": "2023-05-08T07:19:16.000Z"
+    },
+    {
+      "company": "Square",
+      "type": "Entry level",
+      "status": "Not Yet Open",
+      "url": "https://block.xyz/careers/square-associate-product-manager-program",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Stripe",
+      "type": "APM",
+      "status": "Open",
+      "url": "https://stripe.com/careers/listing/product-manager-new-grad-accelerator/7737124",
+      "guide": null,
+      "updatedAt": "2026-09-29T03:12:22.000Z"
+    },
+    {
+      "company": "Stubhub",
+      "type": "APM",
+      "status": "Open",
+      "url": "https://job-boards.eu.greenhouse.io/stubhubinc/jobs/4973720101",
+      "guide": null,
+      "updatedAt": "2026-09-15T03:19:46.000Z"
+    },
+    {
+      "company": "The Trade Desk",
+      "type": "APM",
+      "status": "Closed for 2027",
+      "url": "https://careers.thetradedesk.com/jobs/5230247007/associate-product-manager",
+      "guide": null,
+      "updatedAt": "2026-09-15T03:22:21.000Z"
+    },
+    {
+      "company": "TikTok",
+      "type": "Entry level",
+      "status": "Open",
+      "url": "https://lifeattiktok.com/search?job_category_id_list=&location_code_list=&recruitment_id_list=201&subject_id_list=&tag_id_list=&keyword=Product+Manager&limit=12&offset=0",
+      "guide": null,
+      "updatedAt": "2026-08-17T02:33:43.000Z"
+    },
+    {
+      "company": "Uber",
+      "type": "APM",
+      "status": "Paused",
+      "url": "https://www.uber.com/us/en/careers/list/?query=product%20manager%20intern",
+      "guide": null,
+      "updatedAt": "2023-10-29T07:44:30.000Z"
+    },
+    {
+      "company": "Visa",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://visa.wd5.myworkdayjobs.com/Visa?q=product%20manager%20intern",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Warner Bros",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://careers.wbd.com/global/en/job/WAMEGLOBALR000090841EXTERNALENGLOBAL/Associate-Product-Manager",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:49:49.000Z"
+    },
+    {
+      "company": "Workday",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://workday.wd5.myworkdayjobs.com/en-US/Workday?q=associate%20product%20manager",
+      "guide": null,
+      "updatedAt": "2024-06-24T02:49:13.000Z"
+    },
+    {
+      "company": "X (Twitter)",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://careers.x.com/en#positions",
+      "guide": null,
+      "updatedAt": "2022-12-01T14:10:03.000Z"
+    },
+    {
+      "company": "Yahoo",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.yahooinc.com/careers/search.html",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:49:52.000Z"
+    },
+    {
+      "company": "Zynga",
+      "type": "APM",
+      "status": "Not Yet Open",
+      "url": "https://www.zynga.com/job-listing/product-manager-growth-zynga-web3-gaming-r_110113/",
+      "guide": null,
+      "updatedAt": "2024-06-24T02:49:24.000Z"
+    },
+    {
+      "company": "Adobe",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://careers.adobe.com/us/en/job/R172261/2027-MBA-Intern-Product-Manager",
+      "guide": "https://www.tryexponent.com/guides/adobe-product-manager-interview?src=apmlist",
+      "updatedAt": "2026-10-06T03:04:39.000Z"
+    },
+    {
+      "company": "Amazon",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://www.amazon.jobs/en/jobs/10509639/product-manager-technical-pmt-intern-summer-2027",
+      "guide": "https://www.tryexponent.com/guides/amazon-product-manager-interview?src=apmlist",
+      "updatedAt": "2026-08-25T03:51:44.000Z"
+    },
+    {
+      "company": "American Express",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://careers.americanexpress.com/en/sites/CX_1/jobs?keyword=product+manager+intern&mode=location",
+      "guide": null,
+      "updatedAt": "2026-11-03T07:42:01.000Z"
+    },
+    {
+      "company": "Appian",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://careers.appian.com/jobs/8041243-product-manager-intern-",
+      "guide": null,
+      "updatedAt": "2026-08-03T06:24:35.000Z"
+    },
+    {
+      "company": "Apple",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://jobs.apple.com/en-us/search?search=product+manager+intern&sort=relevance",
+      "guide": null,
+      "updatedAt": "2026-06-29T02:51:51.000Z"
+    },
+    {
+      "company": "Atlassian",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://www.atlassian.com/company/careers/all-jobs?team=Product%20Management&location=&search=",
+      "guide": null,
+      "updatedAt": "2026-08-03T06:32:09.000Z"
+    },
+    {
+      "company": "CapitalOne",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://www.capitalonecareers.com/job/mclean/mba-product-intern-summer-2027/31238/101906667360",
+      "guide": null,
+      "updatedAt": "2026-10-27T05:08:57.000Z"
+    },
+    {
+      "company": "Cisco",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://careers.cisco.com/global/en/search-results?keywords=product%20manager%20intern",
+      "guide": null,
+      "updatedAt": "2026-10-27T05:11:08.000Z"
+    },
+    {
+      "company": "Cloudflare",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://job-boards.greenhouse.io/cloudflare/jobs/8274790?gh_jid=8274790",
+      "guide": null,
+      "updatedAt": "2026-11-03T07:44:11.000Z"
+    },
+    {
+      "company": "Coinbase",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://www.coinbase.com/en-sg/careers/positions/8168322",
+      "guide": null,
+      "updatedAt": "2026-10-06T03:10:41.000Z"
+    },
+    {
+      "company": "CrowdStrike",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://crowdstrike.wd5.myworkdayjobs.com/en-US/crowdstrikecareers?q=product%20manager%20intern&source=LinkedIn_jobs",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "DataDog",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://careers.datadoghq.com/all-jobs/?s=product%20manager%20intern",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "Dropbox",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://jobs.dropbox.com/listing/5698361",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "Duolingo",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://careers.duolingo.com/?department=Product+Management#careers",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "Electronic Arts (EA)",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://jobs.ea.com/en_US/careers/JobDetail/Product-Manager-Intern-MBA-Level-Summer-2027-Apex-Legends/216272",
+      "guide": null,
+      "updatedAt": "2026-10-27T05:13:01.000Z"
+    },
+    {
+      "company": "Github",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://www.github.careers/careers-home/jobs?keywords=Product%20Manager&categories=Product&page=1",
+      "guide": null,
+      "updatedAt": "2026-07-20T03:00:21.000Z"
+    },
+    {
+      "company": "Google",
+      "type": "Internship",
+      "status": "Closed for 2027",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/134770032394543814-associate-product-manager-intern-summer-2027",
+      "guide": null,
+      "updatedAt": "2026-10-13T03:52:06.000Z"
+    },
+    {
+      "company": "Hewlett Packard Enterprise",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://careers.hpe.com/us/en/search-results",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "IBM",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://careers.ibm.com/en_US/careers/JobDetail?jobId=128509",
+      "guide": null,
+      "updatedAt": "2026-08-17T02:16:59.000Z"
+    },
+    {
+      "company": "Intuit",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://jobs.intuit.com/job/mountain-view/summer-2027-product-manager-intern/27595/100620927632?cid=directBookmarked_directBookmarked",
+      "guide": null,
+      "updatedAt": "2026-09-15T03:04:08.000Z"
+    },
+    {
+      "company": "Jane Street",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://www.janestreet.com/join-jane-street/position/8621552002/",
+      "guide": null,
+      "updatedAt": "2026-08-10T14:25:40.000Z"
+    },
+    {
+      "company": "Mastercard",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://careers.mastercard.com/us/en/search-results?keywords=product%20manager%20intern",
+      "guide": null,
+      "updatedAt": "2026-10-13T04:01:47.000Z"
+    },
+    {
+      "company": "Masterclass",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://www.linkedin.com/company/masterclassinc/jobs/",
+      "guide": null,
+      "updatedAt": "2024-06-24T02:48:28.000Z"
+    },
+    {
+      "company": "Meta",
+      "type": "Internship",
+      "status": "Paused",
+      "url": "https://www.metacareers.com/jobsearch/?teams[0]=University%20Grad%20-%20Business&teams[1]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&teams[2]=University%20Grad%20-%20PhD%20%26%20Postdoc&q=product%20manager",
+      "guide": null,
+      "updatedAt": "2025-10-24T06:36:38.000Z"
+    },
+    {
+      "company": "Microsoft",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://apply.careers.microsoft.com/careers/job/1970393556983226?domain=microsoft.com&hl=en",
+      "guide": null,
+      "updatedAt": "2026-11-10T04:39:28.000Z"
+    },
+    {
+      "company": "MongoDB",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://www.mongodb.com/company/careers/see-jobs",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Nike",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://jobs.nike.com/job/R-38322",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:34:56.000Z"
+    },
+    {
+      "company": "Nvidia",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/nvidiaexternalcareersite?q=product+manager+intern&jr_id=690bccae4a1b456627b1309a",
+      "guide": null,
+      "updatedAt": "2026-10-20T06:05:17.000Z"
+    },
+    {
+      "company": "Okta",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://www.okta.com/company/careers/job-listing/?keywords=product%20manager%20intern&department=All&location=All",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "Qualcomm",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://app.eightfold.ai/careers?query=associate%20product%20manager&pid=446707513705&domain=qualcomm.com&sort_by=relevance&triggerGoButton=false",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:38:57.000Z"
+    },
+    {
+      "company": "Rakuten",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://rakuten.wd1.myworkdayjobs.com/en-US/RakutenAmericas?q=product%20manager%20intern",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:39:41.000Z"
+    },
+    {
+      "company": "Salesforce",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://www.salesforce.com/company/careers/jobs/?search=product+manager+intern&page=1",
+      "guide": null,
+      "updatedAt": "2026-08-03T07:03:45.000Z"
+    },
+    {
+      "company": "SAP",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://jobs.sap.com/en/jobs/744000158834039/sap-ixp-intern-ai-product-management/",
+      "guide": null,
+      "updatedAt": "2026-11-10T04:42:48.000Z"
+    },
+    {
+      "company": "ServiceNow",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://careers.servicenow.com/jobs/?orderby=0&pagesize=20&page=1&radius=100&team=Engineering,%20Infrastructure%20and%20Operations&team=Product",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:03.000Z"
+    },
+    {
+      "company": "Slack",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://slack.com/careers/dept/product",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Snowflake",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://jobs.ashbyhq.com/snowflake/322b82f6-4b18-4f86-ae34-007f55c4bdbf?departmentId=50d02953-2706-4bf4-9830-0a3fa758e2c4&gh_src=ed5543a62&jr_id=69cf280ecdb525785fb9f10a&utm_medium=phenom-feeds&utm_source=Q2P9NP2NNP",
+      "guide": null,
+      "updatedAt": "2026-11-03T08:00:13.000Z"
+    },
+    {
+      "company": "Splunk",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://www.splunk.com/en_us/careers/jobs/product-management-intern-gotomarket-32006.html",
+      "guide": null,
+      "updatedAt": "2026-07-20T02:53:29.000Z"
+    },
+    {
+      "company": "Tencent",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://tencent.wd1.myworkdayjobs.com/en-US/Tencent_Careers/job/Tencent-Cloud-CPaaS-Product-Management-Intern_R108019?locations=b3d4dad114e4100177c0535a2e410000",
+      "guide": null,
+      "updatedAt": "2026-09-15T03:20:19.000Z"
+    },
+    {
+      "company": "Tesla",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://www.tesla.com/careers/search/job/283841",
+      "guide": null,
+      "updatedAt": "2026-09-22T07:01:42.000Z"
+    },
+    {
+      "company": "TikTok",
+      "type": "Internship",
+      "status": "Open",
+      "url": "https://lifeattiktok.com/search?job_category_id_list=&location_code_list=&recruitment_id_list=202%2C301&subject_id_list=&tag_id_list=&keyword=Product+Manager&limit=12&offset=0",
+      "guide": null,
+      "updatedAt": "2024-08-14T08:55:46.000Z"
+    },
+    {
+      "company": "Tinder",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://jobs.lever.co/matchgroup?commitment=Internship",
+      "guide": null,
+      "updatedAt": "2024-05-13T01:51:04.000Z"
+    },
+    {
+      "company": "Walmart",
+      "type": "Internship",
+      "status": "Not Yet Open",
+      "url": "https://careers.walmart.com/us/en/results?searchQuery=product+manager+intern",
+      "guide": null,
+      "updatedAt": "2025-10-08T06:49:45.000Z"
+    }
+  ]
+}

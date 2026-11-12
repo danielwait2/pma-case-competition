@@ -3,6 +3,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { VIDEO_LIBRARY, type InterviewGuide, type LibraryVideo } from "@/lib/videoLibrary";
+import { useVideoPlayer } from "@/contexts/VideoPlayerContext";
 
 const TOPICS = VIDEO_LIBRARY.map((topic) => ({
   ...topic,
@@ -15,12 +16,20 @@ const SubHeading = ({ children }: { children: React.ReactNode }) => (
   <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">{children}</h4>
 );
 
-const VideoTile = ({ video }: { video: LibraryVideo }) => (
+export const VideoTile = ({ video, playInPlace }: { video: LibraryVideo; playInPlace?: boolean }) => {
+  const player = useVideoPlayer();
+  const inPlace = playInPlace && !!player;
+  return (
   <a
     href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
     target="_blank"
     rel="noopener noreferrer"
-    aria-label={`${video.title}, ${video.minutes} min${video.startHere ? ", start here" : ""} (opens YouTube in a new tab)`}
+    onClick={(e) => {
+      if (!inPlace || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault();
+      player.open(video);
+    }}
+    aria-label={`${video.title}, ${video.minutes} min${video.startHere ? ", start here" : ""}${inPlace ? " (plays here)" : " (opens YouTube in a new tab)"}`}
     className={`group flex h-full flex-col overflow-hidden rounded-lg border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
       video.startHere ? "border-primary/40" : "border-border"
     }`}
@@ -45,7 +54,8 @@ const VideoTile = ({ video }: { video: LibraryVideo }) => (
       </h5>
     </div>
   </a>
-);
+  );
+};
 
 const GuideList = ({ title, items, ordered }: { title: string; items: string[]; ordered?: boolean }) => {
   const ListTag = ordered ? "ol" : "ul";
@@ -90,8 +100,15 @@ const Guide = ({ guide }: { guide: InterviewGuide }) => (
   </div>
 );
 
-const PracticeInterviews = () => {
-  const [selected, setSelected] = useState(DEFAULT_TOPIC);
+interface PracticeInterviewsProps {
+  topic?: string;
+  onTopicChange?: (slug: string) => void;
+}
+
+const PracticeInterviews = ({ topic, onTopicChange }: PracticeInterviewsProps) => {
+  const [localSelected, setLocalSelected] = useState(DEFAULT_TOPIC);
+  const selected = topic ?? localSelected;
+  const setSelected = onTopicChange ?? setLocalSelected;
 
   if (TOPICS.length === 0) return null;
 
