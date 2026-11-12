@@ -14,9 +14,10 @@ import PaidResourceModal from "@/components/PaidResourceModal";
 import PremiumResourceModal from "@/components/PremiumResourceModal";
 import PresidencyConnect from "@/components/PresidencyConnect";
 import ApmPlaybook from "@/components/resources/ApmPlaybook";
-import PracticeInterviews from "@/components/resources/PracticeInterviews";
+import PracticeInterviews, { VideoTile } from "@/components/resources/PracticeInterviews";
 import ResourcesFeedback from "@/components/resources/ResourcesFeedback";
 import { RESOURCE_CATEGORIES, type ResourceIcon } from "@/lib/resources";
+import { matchesQuery, searchVideoLibrary } from "@/lib/search";
 
 interface Resource {
   title: string;
@@ -317,17 +318,16 @@ const ResourcesPage = () => {
     }
   };
 
-  const query = searchQuery.toLowerCase();
   const searchResults = searchQuery
     ? CATEGORIES.flatMap((category) =>
         category.resources
-          .filter(
-            (resource) =>
-              resource.title.toLowerCase().includes(query) || resource.description.toLowerCase().includes(query),
-          )
+          .filter((resource) => matchesQuery(searchQuery, [resource.title, resource.description, ...(resource.tips ?? [])]))
           .map((resource) => ({ resource, category })),
       )
     : [];
+  const videoResults = searchQuery ? searchVideoLibrary(searchQuery) : [];
+  const videoCount = videoResults.reduce((sum, result) => sum + result.videos.length, 0);
+  const totalResults = searchResults.length + videoCount;
 
   const nonEmptyCategories = CATEGORIES.filter((category) => category.resources.length > 0);
 
@@ -487,12 +487,33 @@ const ResourcesPage = () => {
               </AnimatedSection>
             )}
           </div>
-        ) : searchQuery && searchResults.length > 0 ? (
+        ) : searchQuery && totalResults > 0 ? (
           // Search Results View
           <div className="max-w-6xl mx-auto">
             <p className="text-sm text-muted-foreground mb-6">
-              Found {searchResults.length} result{searchResults.length !== 1 ? "s" : ""}
+              Found {totalResults} result{totalResults !== 1 ? "s" : ""}
             </p>
+            {videoResults.length > 0 && (
+              <section aria-labelledby="video-results-title" className="mb-10 space-y-8">
+                <h2 id="video-results-title" className="text-xl font-bold text-foreground">
+                  Practice interview videos
+                </h2>
+                {videoResults.map(({ topic, videos }) => (
+                  <div key={topic.slug}>
+                    <h3 className="text-base font-semibold text-foreground">{topic.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-4">{topic.description}</p>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                      {videos.map((video) => (
+                        <VideoTile key={video.youtubeId} video={video} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </section>
+            )}
+            {searchResults.length > 0 && videoResults.length > 0 && (
+              <h2 className="text-xl font-bold text-foreground mb-4">Resources</h2>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {searchResults.map(({ resource, category }, idx) => (
                 <AnimatedSection key={`${category.id}-${resource.title}`} animation="slide-up" delay={idx * 50} className="h-full">
