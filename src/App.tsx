@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import { VideoPlayerProvider } from "./contexts/VideoPlayerContext";
 import HomePage from "./pages/HomePage";
 import TeamPage from "./pages/TeamPage";
 import ResourcesPage from "./pages/ResourcesPage";
@@ -37,6 +38,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <VideoPlayerProvider>
             <ScrollToTop />
             <RouteMeta />
             <Routes>
@@ -70,6 +72,7 @@ const App = () => (
 
               <Route path="/game" element={<GamePage />} />
             </Routes>
+            </VideoPlayerProvider>
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>

@@ -1,0 +1,35 @@
+name: Sync APM List
+
+on:
+  schedule:
+    - cron: "0 13 * * *" # daily, 6 or 7 AM in Utah
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-apm-list
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run sync:apm
+      - name: Commit if programs changed
+        run: |
+          real_changes=$(git diff -U0 -- src/data/apmList.json | grep '^[+-] ' | grep -vc '"syncedAt"' || true)
+          if git diff --quiet -- src/data/apmHistory.json && [ "$real_changes" -eq 0 ]; then
+            echo "No program changes; skipping commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git add src/data/apmList.json src/data/apmHistory.json
+          git commit -m "Sync APM List $(date -u +%Y-%m-%d)"
+          git push
