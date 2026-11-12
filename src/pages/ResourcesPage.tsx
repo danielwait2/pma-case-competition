@@ -17,6 +17,7 @@ import ApmPlaybook from "@/components/resources/ApmPlaybook";
 import PracticeInterviews from "@/components/resources/PracticeInterviews";
 import ResourcesFeedback from "@/components/resources/ResourcesFeedback";
 import { RESOURCE_CATEGORIES, type ResourceIcon } from "@/lib/resources";
+import { SUGGESTED_SEARCHES, matchesTerms, queryTerms, searchVideos } from "@/lib/videoSearch";
 
 interface Resource {
   title: string;
@@ -317,17 +318,19 @@ const ResourcesPage = () => {
     }
   };
 
-  const query = searchQuery.toLowerCase();
-  const searchResults = searchQuery
+  const query = searchQuery.toLowerCase().trim();
+  const terms = queryTerms(query);
+  const searchResults = query
     ? CATEGORIES.flatMap((category) =>
         category.resources
-          .filter(
-            (resource) =>
-              resource.title.toLowerCase().includes(query) || resource.description.toLowerCase().includes(query),
-          )
+          .filter((resource) => {
+            const text = [resource.title, resource.description, category.title, ...(resource.tips ?? [])].join(" ");
+            return terms.length > 0 ? matchesTerms(text, terms) : text.toLowerCase().includes(query);
+          })
           .map((resource) => ({ resource, category })),
       )
     : [];
+  const videoMatches = searchVideos(searchQuery);
 
   const nonEmptyCategories = CATEGORIES.filter((category) => category.resources.length > 0);
 
@@ -381,7 +384,7 @@ const ResourcesPage = () => {
                 <Search className="absolute left-7 md:left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <Input
                   type="text"
-                  placeholder="Search resources..."
+                  placeholder="Search interview prep, videos, and resources..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 py-6 text-base w-full max-w-full"
@@ -391,11 +394,11 @@ const ResourcesPage = () => {
           </div>
         </AnimatedSection>
 
+        {!selectedCategory && <PracticeInterviews query={searchQuery} matches={videoMatches} />}
+
         {!selectedCategory && !searchQuery && (
           <ApmPlaybook onSelectCategory={setSelectedCategory} onOpenResource={openResourceByTitle} />
         )}
-
-        {!selectedCategory && !searchQuery && <PracticeInterviews />}
 
         {!selectedCategory && !searchQuery && <PresidencyConnect />}
 
@@ -491,7 +494,7 @@ const ResourcesPage = () => {
           // Search Results View
           <div className="max-w-6xl mx-auto">
             <p className="text-sm text-muted-foreground mb-6">
-              Found {searchResults.length} result{searchResults.length !== 1 ? "s" : ""}
+              {searchResults.length} resource link{searchResults.length !== 1 ? "s" : ""} matching "{searchQuery}"
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {searchResults.map(({ resource, category }, idx) => (
@@ -507,10 +510,17 @@ const ResourcesPage = () => {
               ))}
             </div>
           </div>
-        ) : searchQuery ? (
-          // No Results
+        ) : searchQuery && videoMatches.length > 0 ? null : searchQuery ? (
+          // No Results: suggest interview topics instead of a dead end
           <div className="max-w-6xl mx-auto text-center py-12">
-            <p className="text-muted-foreground">No resources found matching "{searchQuery}"</p>
+            <p className="text-muted-foreground mb-4">Nothing matched "{searchQuery}". Try one of these interview topics:</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {SUGGESTED_SEARCHES.map((suggestion) => (
+                <Button key={suggestion} variant="outline" size="sm" onClick={() => setSearchQuery(suggestion)}>
+                  {suggestion}
+                </Button>
+              ))}
+            </div>
           </div>
         ) : (
           // Category Grid View
