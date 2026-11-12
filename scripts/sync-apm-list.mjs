@@ -24,15 +24,25 @@ const html = await res.text();
 const match = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
 if (!match) throw new Error("Could not find the program list on apmlist.com. The page layout may have changed.");
 
+// Only keep web links. The list comes from a third party and is committed without review.
+const safeUrl = (u) => {
+  try {
+    const x = new URL(u);
+    return x.protocol === "https:" || x.protocol === "http:" ? String(u) : null;
+  } catch {
+    return null;
+  }
+};
+
 const { fulltime = [], internship = [] } = JSON.parse(match[1]).props.pageProps.opportunities;
 const programs = [...fulltime, ...internship]
-  .filter((o) => o.Approved !== false && o.Company && o.URL)
+  .filter((o) => o.Approved !== false && o.Company && safeUrl(o.URL))
   .map((o) => ({
-    company: o.Company,
-    type: o.Type,
-    status: o.Status,
-    url: o.URL,
-    guide: o.Guide || null,
+    company: String(o.Company),
+    type: String(o.Type ?? ""),
+    status: String(o.Status ?? ""),
+    url: safeUrl(o.URL),
+    guide: o.Guide ? safeUrl(o.Guide) : null,
     updatedAt: o["Last Modified"] || null,
   }));
 

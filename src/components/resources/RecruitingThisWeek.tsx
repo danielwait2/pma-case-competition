@@ -16,7 +16,11 @@ interface Program {
   updatedAt: string | null;
 }
 
-const PROGRAMS = apmList.programs as Program[];
+const isWebUrl = (u: string | null): u is string => !!u && /^https?:\/\//i.test(u);
+
+const PROGRAMS = (apmList.programs as Program[])
+  .filter((p) => isWebUrl(p.url))
+  .map((p) => ({ ...p, guide: isWebUrl(p.guide) ? p.guide : null }));
 const SYNCED_AT = new Date(apmList.syncedAt);
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
